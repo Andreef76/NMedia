@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//А где то сообщение выскакивало там?
         val post = Post (
             id = 1,
             author = "Нетология. Университет интернет-профессий будущего",
@@ -46,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
             share.setOnClickListener {
                 post.shareCount++
-//                shareCount.text = post.shareCount.toString()
                 shareCount.text = convertCount(post.shareCount)
             }
         }
