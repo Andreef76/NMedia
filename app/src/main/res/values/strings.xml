@@ -4,7 +4,7 @@
     <string name="app_name">NMedia</string>
     <string name="description_avatar">avatar IV</string>
     <string name="menu_post">menu post</string>
-    <string name="favorite">favorite</string>
+    <string name="favorite">like</string>
     <string name="share">share</string>
     <string name="remove_red_eye">remove red eye</string>
 </resources>
