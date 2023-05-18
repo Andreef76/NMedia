@@ -2,10 +2,13 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.viewModels
+import ru.netology.nmedia.adapter.PostAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.NumberConverter.convertCount
 import ru.netology.nmedia.viewmodel.PostViewModel
@@ -17,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 // ==========================================================================================
-
+//
 //        binding.root.setOnClickListener  {
 //            Toast.makeText(this,"Root is clicked",Toast.LENGTH_SHORT).show()
 //        }
@@ -27,36 +30,15 @@ class MainActivity : AppCompatActivity() {
 //        }
 // ==========================================================================================
 
-        val viewModel by viewModels<PostViewModel>()
-        viewModel.data.observe(this) { post ->
-            with(binding) {
-                author.text = post.author
-                published.text = post.published
-                content.text = post.content
-                likeCount.text = convertCount(post.likes)
-                shareCount.text = convertCount(post.shareCount)
-                viewsCount.text = convertCount(post.viewsCount)
-
-                like.setImageResource(if (post.likedByMe) R.drawable.ic_baseline_favorite_red_24 else R.drawable.ic_baseline_favorite_border_24)
-
-                likeCount.text = convertCount(post.likes)
-            }
+        val viewModel: PostViewModel by viewModels()
+        val adapter = PostAdapter (
+            { viewModel.likeById(it.id) },
+            { viewModel.share(it.id) },
+            { viewModel.removeRedEye(it.id) }
+        )
+        binding.list.adapter = adapter
+        viewModel.data.observe(this) { posts ->
+            adapter.submitList(posts)
         }
-
-        binding.like.setOnClickListener {
-            viewModel.like()
-
-        }
-
-        binding.share.setOnClickListener {
-            viewModel.share()
-        }
-
-//        binding.removeRedEye.setOnClickListener {
-//            viewModel.removeRedEye()
-//        }
-
     }
-
-
 }

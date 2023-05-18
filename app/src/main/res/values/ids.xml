@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="viewsCount" type="id" />
+    <item name="avatar" type="id" />
+    <item name="author" type="id" />
+    <item name="published" type="id" />
+    <item name="menu" type="id" />
+    <item name="barrierBottom" type="id" />
+    <item name="like" type="id" />
+    <item name="likeCount" type="id" />
+    <item name="share" type="id" />
+    <item name="shareCount" type="id" />
+    <item name="remove_red_eye" type="id" />
+</resources>
